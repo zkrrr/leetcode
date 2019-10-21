@@ -28,9 +28,6 @@ public class AddTwoNumber {
             sum = x + y + carry;
             listNode.val = sum % 10;
             carry = sum / 10;
-            listNode.next = new ListNode(0);
-            listNode = listNode.next;
-
             if (null == l1){
                 x = 0;
             }else {
@@ -44,16 +41,20 @@ public class AddTwoNumber {
                 y = l2 != null ? l2.val : 0;
             }
             if (null == l1 && null == l2){
+                if (0 != carry){
+                    listNode.next = new ListNode(carry);
+                }
                 break;
             }
+            listNode.next = new ListNode(0);
+            listNode = listNode.next;
         }
         return head;
     }
 
     public static void main(String[] args) {
-        ListNode x = new ListNode(1);
-        ListNode y = new ListNode(2);
-        y.next = new ListNode(2);
+        ListNode x = new ListNode(5);
+        ListNode y = new ListNode(5);
         ListNode result = new AddTwoNumber().addTwoNumbers(x, y);
         while (null != result){
             System.out.print(result.val + "\t");
